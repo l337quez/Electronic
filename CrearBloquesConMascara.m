@@ -3,19 +3,8 @@ sys = 'CrearBloquesConMascara'; %Nombre del sistema
 new_system(sys)  %Crear modelo del sistema
 open_system(sys) % Abrir el Modelo
 
-%Creamos los Bloques
-%///////////////////////////////////////////////////////////////////////
-%add_block = es para crear Bloques
-%Explicacion de sintaxis
-%built-in/    siempre debe ir que significa construir, luego va el
-%bloque que se desea crear. dentro de corchetes lo que cambia es lo que
-%esta dentro de las comillas simples que son el nombre que le queremos
-%poner al bloque.
-%Ejemplos:
-%http://www.student-info.net/sis-mapa/skupina_doc/fe/knjiznica_datoteke/1230865020_zip_vsebina_knjiga_dabneyex10_7.mdl
-%//////////////////////////////////////////////////////////////////////
 
- add_block('built-in/Integrator',[sys '/Int2'])
+% add_block('built-in/Integrator',[sys '/Int2'])
 
 %//////////////////////////////////////////////////////////////////////
 %set_param = es para editar los parametros del bloque 
@@ -40,13 +29,11 @@ open_system(sys) % Abrir el Modelo
 %//////////////////////////////////////////////////////////////////////
 
 
-set_param([sys '/Int2'],...
-    'MaskDisplay','R=1; tita=(0:0.01:2.01*pi);x=R*cos(tita); y=R*sin(tita);plot(x,y);',...
+
+add_block('built-in/Integrator',[sys '/Int']) 
+set_param([sys '/Int'],'MaskDisplay','patch([0 10 20 30 30 0], [10 30 20 25 10 10],[1 0 0])',...
     'MaskIconFrame','off','Position', '[10 150 40 180 ]')
 
-
-%para borrar la pantalla del Command Windows
-clc
 
 
 %//////////////////////////////////////////////////////////////////////  
@@ -55,10 +42,8 @@ clc
 %http://dali.feld.cvut.cz/ucebna/matlab/toolbox/simulink/c03_cr64.html
 %//////////////////////////////////////////////////////////////////////
 
-save_system(sys) 
+%save_system(sys) 
 % Guardar Modelo, se guardara en el mismo directorio donde
 %este CrearBloqueConMascara.m
-
-
 
 
